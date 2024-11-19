@@ -10,38 +10,35 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: '易于使用',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Halia被设计的易于安装和使用，可以全程通过界面操作，快速让您的设备连接与互联。
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: '丰富的协议支持',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Halia支持多种物联网协议，包括Modbus、OPC UA、Coap等，可以满足不同场景的需求。
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: '丰富的函数支持',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Halia内置了丰富的函数库，支持数据转换、计算、逻辑判断等功能，可以满足大部分的数据处理需求。
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
