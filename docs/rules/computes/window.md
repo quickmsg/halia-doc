@@ -4,44 +4,31 @@ sidebar_position: 1
 
 # 窗口
 
-Let's discover **Docusaurus in less than 5 minutes**.
+在时间流场景中，对时态窗口中包含的数据执行操作是一种常见的模式。数据处理功能对窗口函数提供本机支持，使您能够以最小的工作量编写复杂的流处理作业。
 
-## Getting Started
+有五种窗口可供使用： 滚动窗口， 跳跃窗口，滑动窗口，会话窗口和计数窗口。 您可以在查询语法的 GROUP BY 子句中使用窗口函数。
 
-Get started by **creating a new site**.
+所有窗口操作都在窗口的末尾输出结果。窗口的输出将是基于所用聚合函数的单个事件。
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## 滚动窗口
 
-### What you'll need
+滚动窗口函数用于将数据流分割成不同的时间段，并对其执行函数，例如下面的示例。滚动窗口的关键区别在于它们重复不重叠，并且一个事件不能属于多个滚动窗口。
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## 跳跃窗口
 
-## Generate a new site
+跳跃窗口功能会在时间上向前跳一段固定的时间。 将它们视为可能重叠的翻转窗口可能很容易，因此事件可以属于多个跳跃窗口结果集。 要使跳跃窗口与翻转窗口相同，请将跳跃大小指定为与窗口大小相同。
 
-Generate a new Docusaurus site using the **classic template**.
+## 滑动窗口
 
-The classic template will automatically be added to your project after you run the command:
+滑动窗口功能与翻转或跳动窗口不同，仅在事件发生时会产生输出。 每个窗口至少会有一个事件，并且该窗口连续向前移动€（ε）。 就像跳跃窗口一样，事件可以属于多个滑动窗口。
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## 会话窗口
+会话窗口功能对在相似时间到达的事件进行分组，以过滤掉没有数据的时间段。 它有两个主要参数：超时和最大持续时间。
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+当第一个事件发生时，会话窗口开始。 如果从上一次摄取的事件起在指定的超时时间内发生了另一个事件，则窗口将扩展为包括新事件。 否则，如果在超时时间内未发生任何事件，则该窗口将在超时时关闭。
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+如果事件在指定的超时时间内持续发生，则会话窗口将继续扩展直到达到最大持续时间。 最大持续时间检查间隔设置为与指定的最大持续时间相同的大小。 例如，如果最大持续时间为10，则检查窗口是否超过最大持续时间将在 t = 0、10、20、30等处进行。
 
-## Start your site
+## 计数窗口
 
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+滚动计数窗口与一般的滚动窗口类似，在滚动窗口中的事件不重复、不重叠，一个事件不会属于多个滚动窗口。以下是一个长度为 5 的滚动计数窗口。
