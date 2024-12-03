@@ -16,6 +16,8 @@
  */
 const sidebars = {
   haliaSidebar: [
+    'about',
+    'concepts',
     {
       type: 'category',
       label: '设备',
@@ -71,6 +73,7 @@ const sidebars = {
           },
           items: [
             'rules/sources/device',
+            'rules/sources/app',
           ]
         },
         {
@@ -80,9 +83,19 @@ const sidebars = {
             type: 'generated-index'
           },
           items: [
-            'rules/computes/filter',
-            'rules/computes/merge',
-            'rules/computes/window',
+            'rules/functions/filter',
+            'rules/functions/merge',
+            'rules/functions/window',
+            {
+              type: 'category',
+              label: '计算节点',
+              link: {
+                type: 'generated-index'
+              },
+              items: [
+                'rules/functions/computes/array',
+              ]
+            }
           ]
         },
         {
@@ -93,6 +106,7 @@ const sidebars = {
           },
           items: [
             'rules/sinks/device',
+            'rules/sinks/app',
           ]
         }
       ]
